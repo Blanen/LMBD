@@ -1,0 +1,83 @@
+<div class="container-fluid">
+    <div class="row row-eq-height">
+        <div class="col-md-2">
+            <!--Sidebar content -->
+            <div class="title">
+                <h1>LMDB</h1>
+            </div>
+            <div class="Subtitle">
+                <h3>Local Movie DataBase</h3>
+            </div>
+            <div class="search-container">
+                <div class="input-group stylish-input-group">
+                    <input ng-model="query" type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-search"></span>
+                    </span>
+                </div>
+            </div>
+            <div class="reset-button-wrapper" ng-controller="MoviesResetCtrl">
+                <button ng-click="resetMovies()" class="btn btn-warning">
+                    Reset !
+                </button>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <!--Body content-->
+            <h2> Movies </h2>
+            <h5> Movies in list: <span class="badge">{{filteredItems.length}} </span></h5>
+            <div
+                class="movie-list-wrapper">
+                <div
+                    class="list-group-item"
+                    ng-repeat="movie in (filteredItems = (storage.movies | filter:query | orderBy: 'year'))">
+                    <p>{{movie.name}}</p>
+                    <span
+                        class="btn-group button-remove-span"
+                        ng-controller="MovieRemoveCtrl">
+                        <button
+                            type="button"
+                            class="btn btn-danger inline pull-right"
+                            ng-click="removeFromList(movie)">
+                            Verwijder
+                        </button>
+                    </span>
+                </div>
+                <div
+                    class="add-movie-wrapper list-group-item">
+                    <form
+                        ng-controller="MovieAddCtrl"
+                        class="form-inline">
+                        <label
+                            style="margin-right: 10px;"
+                            for="name">
+                            Name
+                        </label>
+                        <input
+                            type="text"
+                            class="form-control mb-2 mr-sm-2 mb-sm-0"
+                            id="name"
+                            placeholder="Ster oorlogen 6"
+                            ng-model="movie.name">
+                        <label
+                            style="margin-right: 10px;"
+                            for="year">
+                            Year
+                        </label>
+                        <input 
+                            type="number"
+                            class="form-control mb-2 mr-sm-2 mb-sm-0"
+                            id="year"
+                            placeholder="1992"
+                            ng-model="movie.year">
+                        <button
+                            ng-click="addToList(movie)"
+                            class="btn btn-primary add-movie-button">
+                             Voeg toe 
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

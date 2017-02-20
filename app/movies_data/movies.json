@@ -1,0 +1,68 @@
+[
+    {
+        "name": "Ster Oorlogen",
+        "year": 1977,
+        "id": 0,
+        "english-name": "Star Wars"
+    },
+    {
+        "name": "Ster Oorlogen 5",
+        "year": 1980,
+        "id": 1,
+        "english-name": "Star Wars 5"
+    },
+    {
+        "name": "Burger Kane",
+        "year": 1941,
+        "id": 2,
+        "english-name": "Citizen Kane"
+    },
+    {
+        "name": "Wit Huis",
+        "year": 1942,
+        "id": 3,
+        "english-name": "Casablance"
+    },
+    {
+        "name": "De Peetvader",
+        "year": 1972,
+        "id": 4,
+        "english-name": "The Godfather"
+    },
+    {
+        "name": "Lawrence van Arabie",
+        "year": 1962,
+        "id": 5,
+        "english-name": "Lawrence of Arabia"
+    },
+    {
+        "name": "De Magier van Oz",
+        "year": 1939,
+        "id": 6,
+        "english-name": "The wizard of Oz"
+    },
+    {
+        "name": "De Afgestudeerde",
+        "year": 1967,
+        "id": 7,
+        "english-name": "The Graduate"
+    },
+    {
+        "name": "Op het Waterfront",
+        "year": 1954,
+        "id": 8,
+        "english-name": "On the Waterfront"
+    },
+    {
+        "name": "Schindler's Lijst",
+        "year": 1993,
+        "id": 9,
+        "english-name": "Schindler's List"
+    },
+    {
+        "name": "Weg met de Wind",
+        "year": 1939,
+        "id": 10,
+        "english-name": "Gone with the Wind"
+    }
+]

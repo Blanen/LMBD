@@ -1,0 +1,49 @@
+/* app css stylesheet */
+li{
+  list-style: None;
+	background: #EEEEEE;
+	margin:1em;
+	padding:1em;
+	border-style:solid;
+	border-width:2px;
+	border-color:#DDDDDD;
+    border-radius:3px;
+	
+}
+p{
+    font-weight: bold;
+}
+.col-md-2{
+    background-color: #90cff9;
+}
+.col-md-10{
+    background-color: #F5FBFF;
+}
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+.search-container{
+    padding-top:1em;
+}
+.movie-list-wrapper{
+    margin-bottom:1em;
+}
+.add-movie-button{
+    float:right;
+}
+.button-remove-span{
+	float:right;
+	margin-top:-2.2em;
+}
+.reset-button-wrapper{
+    margin-top: 1em;
+}
