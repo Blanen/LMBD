@@ -123,11 +123,10 @@ var getHighestId = function (array) {
 }
 
 var getById = function(array, id){
-    var element = null;
     for(var i = 0; i< array.length; i++){
         if(array[i].id == id){
             return array[i];
         }
     }
-    return element;
+    return null;
 }
