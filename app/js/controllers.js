@@ -7,7 +7,7 @@ movieControllers.controller('MovieListCtrl', [
     function ($scope, $localStorage, $http) {
         $scope.storage = $localStorage;
         
-        if(typeof $localStorage.movies === 'undefined' || $localStorage.movies === null){
+        if(typeof $localStorage.movies === 'undefined'){
             $http.get('/app/movies_data/movies.json').then(function(response){
                 console.log($localStorage.movies);
                 $localStorage.movies = response.data;
