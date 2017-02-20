@@ -6,58 +6,77 @@ movieControllers.controller('MovieListCtrl', [
     '$http',
     function ($scope, $localStorage, $http) {
         $scope.storage = $localStorage;
-        
-        if(typeof $localStorage.movies === 'undefined'){
-            $http.get('/app/movies_data/movies.json').then(function(response){
-                console.log($localStorage.movies);
+
+        if (typeof $localStorage.movies === 'undefined') {
+            $http.get('/app/movies_data/movies.json').then(function (response) {
                 $localStorage.movies = response.data;
-                console.log('SUCCESS');
-                console.log($localStorage.movies);
-            }, function(response){
                 console.log("FAILED");
             });
         }
-        else{
+        else {
             console.log('NOT UNDEFINED');
         }
 
-        
+
     }]);
 
-movieControllers.controller('MovieDetailCtrl', ['$scope', '$routeParams',
-    function($scope, $routeParams) {
-        $scope.movieId = $routeParams.movieId;
+movieControllers.controller('MovieDetailCtrl', [
+    '$scope',
+    '$routeParams',
+    '$localStorage',
+    '$location',
+
+    function ($scope, $routeParams, $localStorage, $location) {
+        var movieId = $routeParams.movieId;
+
+        var result = getById($localStorage.movies, movieId);
+
+        console.log($localStorage.movies);
+
+        if(result != null){
+            $scope.movie = result;
+        }else{
+            console.log("MOVIE NOT FOUND!");
+            $location.path('/movies');
+        }
     }]);
 
 movieControllers.controller('MovieAddCtrl', [
-        '$scope',
-        '$localStorage',
+    '$scope',
+    '$localStorage',
 
-    function($scope, $localStorage) {
+    function ($scope, $localStorage) {
         console.log('MOVIEADDCONTROLLER');
-        
-        
-        $scope.addToList = function(movie){
+
+
+        $scope.addToList = function (movie) {
             var highest_id = getHighestId($localStorage.movies);
             $localStorage.movies.push({
                 "year": movie.year,
                 "name": movie.name,
-                "id": highest_id});
+                "id": highest_id
+            });
         };
     }]);
 
-movieControllers.controller('MovieRemoveCtrl', [
+movieControllers.controller('ListItemCtrl', [
     '$scope',
     '$localStorage',
+    '$location',
 
-    function($scope, $localStorage) {
-        $scope.removeFromList = function(element){
+    function ($scope, $localStorage, $location) {
+        $scope.removeFromList = function (element) {
             console.log("REMOVE ITEM");
             var index = $localStorage.movies.indexOf(element);
-            if(index> -1){
+            if (index > -1) {
                 $localStorage.movies.splice(index, 1);
             }
         };
+        $scope.goToDetail = function(id) {
+            console.log("GO TO DETAIL OF " + id);
+            $location.path("/movies/id/" + id);
+
+        }
     }
 ])
 movieControllers.controller('MoviesResetCtrl', [
@@ -65,8 +84,8 @@ movieControllers.controller('MoviesResetCtrl', [
     '$localStorage',
     '$route',
 
-    function($scope, $localStorage, $route) {
-        $scope.resetMovies = function() {
+    function ($scope, $localStorage, $route) {
+        $scope.resetMovies = function () {
             console.log("RESET!");
             delete $localStorage.movies;
             $route.reload();
@@ -74,19 +93,41 @@ movieControllers.controller('MoviesResetCtrl', [
     }
 ])
 
-var getHighestId = function(array){
+movieControllers.controller('HomeCtrl', [
+    '$scope',
+    '$location',
+
+    function ($scope, $location) {
+        $scope.goToList = function() {
+            console.log('GO TO LIST!');
+            $location.path('/movies');
+        };
+    }
+])
+
+var getHighestId = function (array) {
     var highest_id = null;
 
-    if(array.length === 0){
+    if (array.length === 0) {
         return 0;
     }
 
-    array.forEach(function(element) {
-        if(element.id > highest_id){
+    array.forEach(function (element) {
+        if (element.id > highest_id) {
             highest_id = element.id;
             console.log(element.id);
         }
     }, this);
 
     return highest_id;
+}
+
+var getById = function(array, id){
+    var element = null;
+    for(var i = 0; i< array.length; i++){
+        if(array[i].id == id){
+            return array[i];
+        }
+    }
+    return element;
 }

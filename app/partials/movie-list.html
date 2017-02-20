@@ -26,58 +26,35 @@
             <!--Body content-->
             <h2> Movies </h2>
             <h5> Movies in list: <span class="badge">{{filteredItems.length}} </span></h5>
-            <div
-                class="movie-list-wrapper">
-                <div
-                    class="list-group-item"
-                    ng-repeat="movie in (filteredItems = (storage.movies | filter:query | orderBy: 'year'))">
-                    <p>{{movie.name}}</p>
-                    <span
-                        class="btn-group button-remove-span"
-                        ng-controller="MovieRemoveCtrl">
-                        <button
-                            type="button"
-                            class="btn btn-danger inline pull-right"
-                            ng-click="removeFromList(movie)">
+            <div class="movie-list-wrapper">
+                <div ng-controller="ListItemCtrl" class="list-group-item" ng-repeat="movie in (filteredItems = (storage.movies | filter:query | orderBy: 'year'))">
+                    <h3>{{movie.name}}</h3>
+                    <span class="btn-group button-detail-span">
+                        <button type="button" class="btn btn-info inline pullright" ng-click="goToDetail(movie.id)">
+                            Go to Detail
+                        </button>
+                    </span>
+
+                    <span class="btn-group button-remove-span">
+                         <button type="button" class="btn btn-danger inline pull-right" ng-click="removeFromList(movie)">
                             Verwijder
                         </button>
                     </span>
                 </div>
-                <div
-                    class="add-movie-wrapper list-group-item">
-                    <form
-                        ng-controller="MovieAddCtrl"
-                        class="form-inline">
-                        <label
-                            style="margin-right: 10px;"
-                            for="name">
+                <div class="add-movie-wrapper list-group-item">
+                    <form ng-controller="MovieAddCtrl" class="form-inline">
+                        <label style="margin-right: 10px;" for="name">
                             Name
                         </label>
-                        <input
-                            type="text"
-                            class="form-control mb-2 mr-sm-2 mb-sm-0"
-                            id="name"
-                            placeholder="Ster oorlogen 6"
-                            ng-model="movie.name">
-                        <label
-                            style="margin-right: 10px;"
-                            for="year">
+                        <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="name" placeholder="Ster oorlogen 6" ng-model="movie.name">
+                        <label style="margin-right: 10px;" for="year">
                             Year
                         </label>
-                        <input 
-                            type="number"
-                            class="form-control mb-2 mr-sm-2 mb-sm-0"
-                            id="year"
-                            placeholder="1992"
-                            ng-model="movie.year">
-                        <button
-                            ng-click="addToList(movie)"
-                            class="btn btn-primary add-movie-button">
+                        <input type="number" class="form-control mb-2 mr-sm-2 mb-sm-0" id="year" placeholder="1992" ng-model="movie.year">
+                        <button ng-click="addToList(movie)" class="btn btn-primary add-movie-button">
                              Voeg toe 
                         </button>
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+        </div>    </div></div>

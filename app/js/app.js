@@ -8,11 +8,11 @@ movieApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
             when('/', {
-                templateUrl: 'partials/movie-list.html',
-                controller: 'MovieListCtrl'
+                templateUrl: 'partials/home.html',
+                controller: "HomeCtrl"
             }).
-            when('/movies/:movieId', {
-                templateUrl: 'partials/movie-list.html',
+            when('/movies/id/:movieId', {
+                templateUrl: 'partials/movie-detail.html',
                 controller: 'MovieDetailCtrl'
             }).
             when('/movies', {
